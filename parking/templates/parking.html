@@ -6,19 +6,15 @@
 <head>
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css'%}">
-    <title>Login</title>
+    <title>Estacionamiento</title>
 </head>
   <body>
-	<div class="container">
-	<form action="/tu-rut/" method="post">
+  	<h3>Datos del propietario: </h3>
+	<form action="/" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <input type="submit" value="Aceptar" />
 	</form>
-
-   	</div>
-
-
 
   </body>
 
