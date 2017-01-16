@@ -4,9 +4,12 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from django.template.context import RequestContext
 
-from .forms import OwnerForm, CarForm, ParkingForm
+from .forms import OwnerForm, CarForm, ParkingForm, QueryForm
 
 from parking.models import User, Car, Parking
+
+from rest_framework import viewsets
+from parking.serializers import ParkingSerializer
 
 
 def index(request):
@@ -47,7 +50,8 @@ def index(request):
 
 			except Exception as e:
 				print e
-			return HttpResponse('buena')
+			return render_to_response('parking.html', {'form':form, 'formcar':formcar, 'formparking':formparking}, 
+		context_instance=RequestContext(request))
 	else:
 		form = OwnerForm()
 		formcar = CarForm()
@@ -55,3 +59,16 @@ def index(request):
 
 	return render_to_response('parking.html', {'form':form, 'formcar':formcar, 'formparking':formparking}, 
 		context_instance=RequestContext(request))
+
+
+def parking(request):
+	if request.method == 'POST':
+		form = QueryForm(request.POST)
+	else:
+		form = QueryForm()
+	return render_to_response('queryparking.html', {'form':form}, context_instance=RequestContext(request))
+
+
+class ParkingViewSet(viewsets.ModelViewSet):
+    queryset = Parking.objects.all().order_by('idparking')
+    serializer_class = ParkingSerializer

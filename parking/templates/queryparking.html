@@ -6,7 +6,7 @@
 <head>
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css'%}">
-    <title>Estacionamiento</title>
+    <title>Consulta Estacionamiento</title>
 </head>
   <body>
     <div class="container">
@@ -17,21 +17,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/">Datos</a></li>
-        <li><a href="estacionamiento/">Consulta Estacionamiento</a></li>
+        <li><a href="../estacionamiento/">Consulta Estacionamiento</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  	<form action="/" method="post" class="form-horizontal">
-      <h3>Datos del propietario: </h3>
+  	<form action="../parking/" method="post" class="form-horizontal">
+      <h3>Consulta: </h3>
       {% csrf_token %}
       {{ form.as_p }}
-      <h3>Datos del auto: </h3>
-      {% csrf_token %}
-      {{ formcar.as_p }}
-      <h3>Datos del estacionamiento: </h3>
-      {% csrf_token %}
-      {{ formparking.as_p }}
       <input type="submit" value="Aceptar" />
   	</form>
   </div>
