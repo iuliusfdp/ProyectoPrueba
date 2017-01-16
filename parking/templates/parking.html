@@ -9,12 +9,18 @@
     <title>Estacionamiento</title>
 </head>
   <body>
-  	<h3>Datos del propietario: </h3>
-	<form action="/" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Aceptar" />
-	</form>
+  	<form action="/" method="post">
+      <h3>Datos del propietario: </h3>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <h3>Datos del auto: </h3>
+      {% csrf_token %}
+      {{ formcar.as_p }}
+      <h3>Datos del estacionamiento: </h3>
+      {% csrf_token %}
+      {{ formparking.as_p }}
+      <input type="submit" value="Aceptar" />
+  	</form>
 
   </body>
 
