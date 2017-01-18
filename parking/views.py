@@ -62,8 +62,16 @@ def index(request):
 
 
 def parking(request):
-	if request.method == 'POST':
-		form = QueryForm(request.POST)
+	if request.method == 'GET':
+		form = QueryForm(request.GET)
+		if form.is_valid():
+			patente = form.cleaned_data['patente']
+			print patente
+			try:
+				queryset = Parking.objects.filter(idcar_id__patente=patente).values('dias')
+				print queryset
+			except Exception as e:
+				print e
 	else:
 		form = QueryForm()
 	return render_to_response('queryparking.html', {'form':form}, context_instance=RequestContext(request))
