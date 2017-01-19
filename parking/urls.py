@@ -9,5 +9,5 @@ router.register(r'parking', views.ParkingViewSet)
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^', include(router.urls)),
-    url(r'^estacionamiento/$', views.parking, name='estacionamiento')
+    url(r'^estacionamiento', views.parking, name='estacionamiento')
 ]

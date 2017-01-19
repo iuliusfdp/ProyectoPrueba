@@ -69,7 +69,12 @@ def parking(request):
 			print patente
 			try:
 				queryset = Parking.objects.filter(idcar_id__patente=patente).values('dias')
-				print queryset
+				if not queryset:
+					json_dict={"status":"failed", "result":"no data"}
+				else:
+					json_dict={"status":"success", "result":queryset[0]}
+				return render_to_response('queryparking.html', {'json_to_response':json_dict, 'form':form}, 
+					context_instance=RequestContext(request))
 			except Exception as e:
 				print e
 	else:
