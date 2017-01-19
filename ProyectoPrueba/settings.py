@@ -97,15 +97,15 @@ DATABASES = {
         'PASSWORD': 'root',
         #'HOST': 'localhost',
         'HOST': '127.0.0.1',
-        'PORT':'5432',
+        'PORT': '5432',
     }
 }
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-        os.path.join(BASE_DIR,'static'),
-    )
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
