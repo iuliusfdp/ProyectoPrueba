@@ -22,6 +22,18 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+    {% if msg %}
+    <div class="alert alert-success">
+    {{ msg }}
+    </div>
+    {% endif %}
+
+    {% if msgerror %}
+    <div class="alert alert-warning">
+    {{ msgerror }}
+    </div>
+    {% endif %}
+
   	<form action="/" method="post" class="form-horizontal">
       <h3>Datos del propietario: </h3>
       {% csrf_token %}

@@ -48,10 +48,19 @@ def index(request):
                                   idcar_id=idauto['idcar'])
                 parking.save()
 
+                msg = "Datos agregados correctamente"
+
+                return render_to_response('parking.html', {'form': form, 'formcar': formcar,
+                                                           'formparking': formparking, 'msg': msg},
+                                          context_instance=RequestContext(request))
+
             except Exception as e:
+                msgerror = "No se pudieron agregar los datos"
                 print e
-            return render_to_response('parking.html', {'form': form, 'formcar': formcar, 'formparking': formparking},
-                                      context_instance=RequestContext(request))
+                return render_to_response('parking.html', {'form': form, 'formcar': formcar,
+                                                           'formparking': formparking,
+                                                           'msgerror': msgerror},
+                                          context_instance=RequestContext(request))
     else:
         form = OwnerForm()
         formcar = CarForm()
