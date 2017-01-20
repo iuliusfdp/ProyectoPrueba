@@ -62,26 +62,16 @@ def index(request):
 
 
 def parking(request):
-    if request.method == 'GET':
-        try:
-            form = QueryForm(request.GET)
-            if form.is_valid():
-                patente = form.cleaned_data['patente']
-                try:
-                    queryset = Parking.objects.filter(
-                        idcar_id__patente=patente).values('dias')
-                    if not queryset:
-                        json_dict = {"status": "failed", "result": "no data"}
-                    else:
-                        json_dict = {"status": "success",
-                                     "result": queryset[0]}
-                    return render_to_response('queryparking.html', {'json_to_response': json_dict, 'form': form},
-                                              context_instance=RequestContext(request))
-                except Exception as e:
-                    print e
-        except Exception as e:
-            print "entro en exception"
-            print e
-    else:
-        form = QueryForm()
+    form = QueryForm(request.GET)
+    if form.is_valid():
+        patente = form.cleaned_data['patente']
+        queryset = Parking.objects.filter(
+            idcar_id__patente=patente).values('dias')
+        if not queryset:
+            json_dict = {"status": "failed", "result": "no data"}
+        else:
+            json_dict = {"status": "success",
+                         "result": queryset[0]}
+        return render_to_response('queryparking.html', {'json_to_response': json_dict, 'form': form},
+                                  context_instance=RequestContext(request))
     return render_to_response('queryparking.html', {'form': form}, context_instance=RequestContext(request))
