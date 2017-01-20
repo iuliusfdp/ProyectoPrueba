@@ -24,6 +24,12 @@ Models
 - Car: Clase que almacena los datos del automóvil.
 - Parking: Clase que almacena los datos del estacionamiento.
 
+Instalación
+=========
+
+Para instalar Django en su equipo siga los pasos de instalación del siguiente enlace.
+https://docs.djangoproject.com/en/1.10/topics/install/
+
 Ejecución
 =========
 
